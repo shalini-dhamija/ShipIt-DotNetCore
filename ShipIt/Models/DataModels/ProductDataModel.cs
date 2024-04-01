@@ -28,10 +28,12 @@ namespace ShipIt.Models.DataModels
         {
             var type = GetType();
             var properties = type.GetProperties();
-
+            //Console.WriteLine("<---Here--->");
             foreach (var property in properties)
             {
+                
                 var attribute = (DatabaseColumnName)property.GetCustomAttributes(typeof(DatabaseColumnName), false).First();
+                //Console.WriteLine($"<---------{attribute}------->");
                 property.SetValue(this, dataReader[attribute.Name], null);
             }
         }
